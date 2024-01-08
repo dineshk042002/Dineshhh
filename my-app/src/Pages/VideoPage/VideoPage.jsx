@@ -55,7 +55,7 @@ function VideoPage() {
             >
               <source
               //src={`http://localhost:5500//${vv?.filePath}`}
-              src={`https://dineshkk.onrender.com/${vv?.filePath}`}
+              src={`https://youtube1-t4ls.onrender.com/${vv?.filePath}`}
                 type='video/mp4' // Adjust the type based on your video format
               />
               Your browser does not support the video tag.

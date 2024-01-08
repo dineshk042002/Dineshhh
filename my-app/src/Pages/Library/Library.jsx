@@ -4,6 +4,10 @@ import './Library.css';
 import { FaHistory } from 'react-icons/fa';
 
 import vid from '../../Components/Video/vid.mp4';
+import WHLVideoList from '../../Components/WHL/WHLVideoList';
+import { MdOutlineWatchLater } from 'react-icons/md';
+import { AiOutlineLike } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 
 function Library() {
   const vids = [
@@ -41,12 +45,15 @@ function Library() {
     },
   ];
 
+  const CurrentUser = useSelector(state => state?.currentUserReducer);
+  const histroyList = useSelector(state=>state.HistroyReducer)
+  const WatchLaterList = useSelector(state=>state.watchLaterReducer)
+  const likedVideoList = useSelector(state=>state.likedVideoReducer)
   return (
     <div className='container_Pages_App'>
       <LeftSideBar />
       <div className='container2_Pages_App'>
         <div className='container_libraryPage'>
-          <div className='container2_librarypage'>
             <h1 className='title_container_libraypage'>
               <b>
                 <FaHistory />
@@ -54,18 +61,40 @@ function Library() {
               <b>History</b>
             </h1>
             <div className='container_videoList_libraryPage'>
-              {vids.map((video) => (
-                <div key={video._id} className='video_item'>
-                  <video src={video.video_src} controls />
-                  <h2>{video.title}</h2>
-                  <p>{video.description}</p>
-                </div>
-              ))}
+               <WHLVideoList page={"Histroy"} 
+               CurrentUser={CurrentUser?.result._id}
+               videoList={histroyList} />
+            </div>
+          </div>
+          <div className='container_libraryPage'>
+            <h1 className='title_container_libraypage'>
+              <b>
+                <MdOutlineWatchLater/>
+              </b>
+              <b>WatchLater</b>
+            </h1>
+            <div className='container_videoList_libraryPage'>
+               <WHLVideoList page={"Watch Later"}
+               CurrentUser={CurrentUser?.result._id}
+               videoList={WatchLaterList} />
+            </div>
+          </div>
+          <div className='container_libraryPage'>
+            <h1 className='title_container_libraypage'>
+              <b>
+                <AiOutlineLike/>
+              </b>
+              <b>Like videos</b>
+            </h1>
+            <div className='container_videoList_libraryPage'>
+               <WHLVideoList page={"LikedVideos"} 
+               CurrentUser={CurrentUser?.result._id}
+               videoList={likedVideoList} />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 
