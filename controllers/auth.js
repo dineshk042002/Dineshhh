@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import users from '../models/auth.js';
-import { sendSecurityAlertEmail, sendAccountBlockedEmail } from '../utils/email.js';
 
-const MAX_FAILED_ATTEMPTS = 5;
+
+
 
 const generateToken = (user) => {
   return jwt.sign(
@@ -12,17 +12,8 @@ const generateToken = (user) => {
   );
 };
 
-const isAccountBlocked = (blockedUntil) => {
-  return blockedUntil && blockedUntil > Date.now();
-};
 
-const sendSecurityAlertAndBlockEmails = async (user) => {
-  if (user.failedLoginAttempts >= MAX_FAILED_ATTEMPTS) {
-    await sendSecurityAlertEmail(user.email); 
-    user.blockedUntil = Date.now() + 1 * 60 * 60 * 1000; 
-    await sendAccountBlockedEmail(user.email);
-  }
-};
+
 
 export const login = async (req, res) => {
   const { email } = req.body;
