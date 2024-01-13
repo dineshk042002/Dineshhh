@@ -37,7 +37,7 @@ function LikeWatchLaterSaveBtns({ vv, vid }) {
     if (SaveVideo) {
       setSaveVideo(false);
       dispatch(  
-        deleteWatchLater({
+        ({
           videoId: vid,
           Viewer: CurrentUser?.result._id,
         })      

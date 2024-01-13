@@ -25,6 +25,7 @@ function LeftSideBar() {
            <MdOutlineSubscriptions size={22} className='icon_sidebar'/>
            <div className='text_sidebar_icon' style={{fontsize:"12px"}}>Subcriptions</div>
         </div>
+        
         <NavLink to={'/library'} className='icon_sidebar_div'>
            <MdOutlineVideoLibrary size={22} className='icon_sidebar'/>
            <div className='text_sidebar_icon'>Library</div>

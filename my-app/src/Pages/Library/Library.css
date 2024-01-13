@@ -1,12 +1,8 @@
-/* Library.css */
 .container_Pages_App {
     display: flex;
-    background-color: gray;
+    background-color: rgb(21, 21, 21);
   }
   
-
-  
-
   .container_libraryPage {
     border-bottom: 1px solid gray;
     padding: 1rem 2rem;
@@ -39,6 +35,6 @@
   
   .video_item video {
     width: 100%;
-    max-width: 300px; /* Adjust the max width as needed */
+    max-width: 300px; 
   }
   

@@ -23,7 +23,7 @@ export const deletelikedVideo=(videoId,Viewer)=>API.delete(`/video/deleteLikedVi
 
 export const addTowatchLater=(watchLaterData)=>API.post('/video/watchLater',watchLaterData);
 export const getAllwatchLater=()=>API.get('/video/getAllwatchLater');
-export const deleteWatchLater=(videoId,Viewer)=>API.delete(`/video/deleteWatchlater/${videoId}/${Viewer}`)
+export const deleteWatchLater=(videoId,Viewer)=>API.delete(`/video/deleteWatchLater/${videoId}/${Viewer}`)
 
 export const addToHistroy=(HistroyData)=>API.post('/video/Histroy',HistroyData);
 export const getAllHistroy=()=>API.get('/video/getAllHistroy');
@@ -33,3 +33,7 @@ export const postComment=(CommentData)=> API.post('/comment/post',CommentData)
 export const deleteComment=(id)=> API.delete(`/comment/delete/${id}`)
 export const editComment=(id,commentBody)=> API.patch(`/comment/edit/${id}`,{commentBody})
 export const getAllComment=()=> API.get('/comment/get')
+
+export const addToWatchHistroy=(WatchHistroyData)=>API.post('/video/WatchHistroy',WatchHistroyData);
+export const getAllWatchHistroy=()=>API.get('/video/getAllWatchHistroy');
+export const deleteWatchHistroy=(userId)=>API.delete(`/video/deleteWatchHistroy/${userId}`);
