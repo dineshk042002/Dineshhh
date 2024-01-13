@@ -13,20 +13,13 @@ const generateToken = (user) => {
 };
 
 const isAccountBlocked = (blockedUntil) => {
-  return blockedUntil && new Date() < new Date(blockedUntil);
-};
-
-const blockAccount = (user) => {
-  user.blockedUntil = new Date(Date.now() + 60 * 60 * 1000); // Block for one hour
+  return blockedUntil && blockedUntil > Date.now();
 };
 
 const sendSecurityAlertAndBlockEmails = async (user) => {
-  if (user.failedLoginAttempts === 3) {
-    await sendSecurityAlertEmail(user.email);
-  }
-
-  if (user.failedLoginAttempts === MAX_FAILED_ATTEMPTS) {
-    blockAccount(user);
+  if (user.failedLoginAttempts >= MAX_FAILED_ATTEMPTS) {
+    await sendSecurityAlertEmail(user.email); 
+    user.blockedUntil = Date.now() + 1 * 60 * 60 * 1000; 
     await sendAccountBlockedEmail(user.email);
   }
 };
@@ -45,7 +38,7 @@ export const login = async (req, res) => {
         return res.status(403).json({ mess: 'Account is blocked. Please try again later.' });
       }
 
-      const incorrectPassword = true; // Replace this with your actual password check logic
+      const incorrectPassword = true; 
 
       if (incorrectPassword) {
         existingUser.failedLoginAttempts = (existingUser.failedLoginAttempts || 0) + 1;
