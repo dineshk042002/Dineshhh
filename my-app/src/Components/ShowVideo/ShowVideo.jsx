@@ -11,8 +11,8 @@ function ShowVideo({ vid }) {
         
           <video
         
-          src={`http://localhost:5500/${vid.filePath}`}
-          //src={`https://dineshk-youtube.onrender.com/${vid.filePath}`}
+          //src={`http://localhost:5500/${vid.filePath}`}
+          src={`https://youtube123.onrender.com/${vid.filePath}`}
             className='video_ShowVideo'
           />
       </Link>
